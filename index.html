@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hampton & Michael Lintorn-Catlin</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.15/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(to bottom right, #a855f7, #ec4899, #facc15);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      margin-top: 1rem;
+    }
+
+    .link {
+      color: #6b21a8;
+      text-decoration: underline;
+      margin: 0 0.25rem;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 28px;
+      color: #9333ea;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <button @click="lang = lang === 'en' ? 'ca' : 'en'">{{ lang === 'en' ? 'Català' : 'English' }}</button>
+
+  <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">{{ t.title }}</h1>
+  <p style="font-size: 1.25rem; max-width: 40rem; margin: 0 auto 2rem auto;">{{ t.subtitle }}</p>
+
+  <div class="card">
+    <p style="font-size: 1rem; line-height: 1.6;">{{ t.about }}</p>
+    <div class="icon-row">
+      <i data-lucide="cocktail"></i>
+      <i data-lucide="utensils"></i>
+      <i data-lucide="plane"></i>
+      <i data-lucide="heart"></i>
+      <i data-lucide="globe"></i>
+    </div>
+    <div style="text-align: left; margin-top: 1.5rem;">
+      <div>
+        <strong>Hampton:</strong><br />
+        <a class="link" href="https://bsky.app/profile/hamptonmakes.com" target="_blank">Bluesky</a>
+        <a class="link" href="https://www.linkedin.com/in/hamptonmakes/" target="_blank">LinkedIn</a>
+        <a class="link" href="https://github.com/hamptonmakes" target="_blank">GitHub</a>
+      </div>
+      <div style="margin-top: 1rem;">
+        <strong>Michael:</strong><br />
+        <a class="link" href="https://bsky.app/profile/malrase.com" target="_blank">Bluesky</a>
+        <a class="link" href="https://www.linkedin.com/in/michael-lintorn-catlin-89267a20/" target="_blank">LinkedIn</a>
+        <a class="link" href="https://github.com/malrase" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <a href="mailto:hello@lin.cat" style="display: inline-block; margin-top: 2rem;">
+      <button style="background: #9333ea; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; font-weight: bold;">{{ t.contact }}</button>
+    </a>
+  </div>
+</div>
+
+<script>
+  const { createApp } = Vue
+  createApp({
+    data() {
+      return {
+        lang: navigator.language.startsWith('ca') ? 'ca' : 'en',
+        translations: {
+          en: {
+            title: "Hampton & Michael Lintorn-Catlin",
+            subtitle: "Technologists with a global perspective.",
+            about: "Hampton and Michael are technologists, travelers, and spouses who live in New York City and New Orleans. We love travel, cocktails, fine dining, scuba diving, horror movies, and petting dogs.",
+            contact: "Get in touch",
+          },
+          ca: {
+            title: "Hampton i Michael Lintorn-Catlin",
+            subtitle: "Tecnòlegs amb una perspectiva global.",
+            about: "En Hampton i en Michael són tecnòlegs, viatgers i parella que viuen a Nova York i Nova Orleans. Ens encanten els viatges, els còctels, la bona cuina, el submarinisme, les pel·lícules de terror i acariciar gossos.",
+            contact: "Contacta amb nosaltres",
+          },
+        }
+      }
+    },
+    computed: {
+      t() {
+        return this.translations[this.lang];
+      }
+    },
+    mounted() {
+      lucide.createIcons();
+    },
+    updated() {
+      lucide.createIcons();
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>
