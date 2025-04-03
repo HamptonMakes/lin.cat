@@ -21,7 +21,7 @@
       padding: 2rem;
     }
 
-    button {
+    button.language-switcher {
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 0.5rem;
@@ -62,7 +62,7 @@
 </head>
 <body>
 <div id="app">
-  <button @click="lang = lang === 'en' ? 'ca' : 'en'">{{ lang === 'en' ? 'Català' : 'English' }}</button>
+  <button @click="lang = lang === 'en' ? 'ca' : 'en'" class="language-switcher">{{ lang === 'en' ? 'Català' : 'English' }}</button>
 
   <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1rem;">{{ t.title }}</h1>
   <p style="font-size: 1.25rem; max-width: 40rem; margin: 0 auto 2rem auto;">{{ t.subtitle }}</p>
